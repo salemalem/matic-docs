@@ -1,7 +1,7 @@
 ---
 id: programs
 title:  Programs in Miden VM
-sidebar_label:  Programs
+sidebar_label: Overview
 description: "How programs are executed in Miden VM."
 keywords:
   - docs

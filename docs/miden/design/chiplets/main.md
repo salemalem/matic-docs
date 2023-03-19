@@ -1,7 +1,7 @@
 ---
 id: main
 title:  Chiplets
-sidebar_label:  Chiplets
+sidebar_label:  Overview
 description: "Chiplets module components."
 keywords:
   - docs
@@ -195,10 +195,10 @@ Miden VM has a running product column $p_0$ which is used to tie the co-processo
 
 We have created a separate unique identifier of an operation which is a component of this permutation check to further ensure that the values stack looking up from the "lookup" table is indeed coming from the intended co-processor for that operation and not from somewhere else.
 
-The identifiers are made up using the selector and internal selector(if they have it) flag values of an operation. A binary aggregation is done on the combined aggregated value of selector and internal selector. When $1$ is added to the binary aggregated value, we get the unique value of the operation. 
+The identifiers are made up using the selector and internal selector(if they have it) flag values of an operation. A binary aggregation is done on the combined aggregated value of selector and internal selector. When $1$ is added to the binary aggregated value, we get the unique value of the operation.
 
 
-| Operation              | Selector flag | Internal Selector Flag | Combined flag    | Label | 
+| Operation              | Selector flag | Internal Selector Flag | Combined flag    | Label |
 | ---------------------- | :-----------: | :--------------------: | ---------------- | :---: |
 | `HASHER_LINER_HASH`    | $\{0\}$       | $\{1, 0, 0\}$          | $\{0, 1, 0, 0\}$ | 3     |
 | `HASHER_MP_VERIFY`     | $\{0\}$       | $\{1, 0, 1\}$          | $\{0, 1, 0, 1\}$ | 11    |

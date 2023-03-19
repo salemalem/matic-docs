@@ -1,7 +1,7 @@
 ---
 id: main
-title:  Miden VM Program decoder
-sidebar_label:  Miden VM Program decoder
+title:  Miden VM Program Decoder
+sidebar_label:  Program decoder
 description: "How Miden VM decoder works."
 keywords:
   - docs

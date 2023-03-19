@@ -1,7 +1,7 @@
 ---
 id: performance
-title: Performance
-sidebar_label: Performance
+title: Performance Benchmarks
+sidebar_label: Performance benchmarks
 description: "Performance benchmarks."
 keywords:
   - docs
@@ -10,7 +10,7 @@ keywords:
   - miden
   - performance
   - benchmark
-image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png 
+image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 
 The benchmarks below should be viewed only as a rough guide for expected future performance. The reasons for this are twofold:

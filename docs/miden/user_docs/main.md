@@ -1,7 +1,7 @@
 ---
 id: main
-title: User Documentation
-sidebar_label: User Documentation
+title: Overview
+sidebar_label: Overview
 description: Documentation summary.
 keywords:
   - docs
@@ -12,7 +12,6 @@ keywords:
 image: https://wiki.polygon.technology/img/thumbnail/polygon-miden.png
 ---
 
-# User Documentation
 In the following sections, we provide developer-focused documentation useful to those who want to develop on Miden VM or build compilers from higher-level languages to Miden VM.
 
 This documentation consists of two high-level sections:

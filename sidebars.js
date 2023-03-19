@@ -813,115 +813,127 @@ module.exports = {
   miden: [
     {
       type: "category",
-      label: "Introduction",
+      label: "Run a Miden VM",
       link: {
         type: "doc",
         id: "miden/intro/main",
       },
       collapsed: false,
       items: [
-        "miden/intro/overview",
         "miden/intro/usage",
         "miden/intro/performance",
       ],
     },
     {
       type: "category",
-      label: "User Documentation",
+      label: "Reference",
       link: {
-        type: "doc",
-        id: "miden/user_docs/main",
+        type: "generated-index",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
+        "miden/intro/main",
+        "miden/intro/overview",
+        "miden/background",
         {
           type: "category",
-          label: "Miden Assembly",
+          label: "Assembly Specifications",
           link: {
-            type: "doc",
-            id: "miden/user_docs/assembly/main",
+            type: "generated-index",
           },
+          collapsed: true,
           items: [
-            "miden/user_docs/assembly/code_organization",
-            "miden/user_docs/assembly/flow_control",
-            "miden/user_docs/assembly/field_operations",
-            "miden/user_docs/assembly/u32_operations",
-            "miden/user_docs/assembly/stack_manipulation",
-            "miden/user_docs/assembly/io_operations",
-            "miden/user_docs/assembly/cryptographic_operations",
+            "miden/user_docs/main",
+            {
+              type: "category",
+              label: "Miden Assembly",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "miden/user_docs/assembly/main",
+                "miden/user_docs/assembly/code_organization",
+                "miden/user_docs/assembly/flow_control",
+                "miden/user_docs/assembly/field_operations",
+                "miden/user_docs/assembly/u32_operations",
+                "miden/user_docs/assembly/stack_manipulation",
+                "miden/user_docs/assembly/io_operations",
+                "miden/user_docs/assembly/cryptographic_operations",
+              ],
+            },
+            {
+              type: "category",
+              label: "Miden Standard Library",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "miden/user_docs/stdlib/main",
+                "miden/user_docs/stdlib/crypto/hashes",
+                "miden/user_docs/stdlib/crypto/fri",
+                "miden/user_docs/stdlib/math/u64",
+                "miden/user_docs/stdlib/sys",
+                "miden/user_docs/stdlib/mem",
+              ],
+            },
           ],
         },
         {
           type: "category",
-          label: "Miden Standard Library",
+          label: "Stack Specifications",
           link: {
-            type: "doc",
-            id: "miden/user_docs/stdlib/main",
+            type: "generated-index",
           },
+          collapsed: false,
           items: [
-            "miden/user_docs/stdlib/crypto/hashes",
-            "miden/user_docs/stdlib/crypto/fri",
-            "miden/user_docs/stdlib/math/u64",
-            "miden/user_docs/stdlib/sys",
-            "miden/user_docs/stdlib/mem",
+            "miden/design/main",
+            {
+              type: "category",
+              label: "Programs",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "miden/design/programs",
+                "miden/design/decoder/constraints",
+              ],
+            },
+            {
+              type: "category",
+              label: "Operand Stack",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "miden/design/stack/main",
+                "miden/design/stack/op_constraints",
+                "miden/design/stack/system_ops",
+                "miden/design/stack/field_ops",
+                "miden/design/stack/u32_ops",
+                "miden/design/stack/stack_ops",
+                "miden/design/stack/io_ops",
+                "miden/design/stack/crypto_ops",
+              ],
+            },
+            "miden/design/range",
+            {
+              type: "category",
+              label: "Chiplets",
+              link: {
+                type: "generated-index",
+              },
+              items: [
+                "miden/design/chiplets/main",
+                "miden/design/chiplets/hasher",
+                "miden/design/chiplets/bitwise",
+                "miden/design/chiplets/memory",
+              ],
+            },
+            "miden/design/multiset",
           ],
         },
       ],
     },
-    {
-      type: "category",
-      label: "Design",
-      link: {
-        type: "doc",
-        id: "miden/design/main",
-      },
-      collapsed: false,
-      items: [
-        "miden/design/programs",
-        {
-          type: "category",
-          label: "Program decoder",
-          link: {
-            type: "doc",
-            id: "miden/design/decoder/main",
-          },
-          items: ["miden/design/decoder/constraints"],
-        },
-        {
-          type: "category",
-          label: "Operand stack",
-          link: {
-            type: "doc",
-            id: "miden/design/stack/main",
-          },
-          items: [
-            "miden/design/stack/op_constraints",
-            "miden/design/stack/system_ops",
-            "miden/design/stack/field_ops",
-            "miden/design/stack/u32_ops",
-            "miden/design/stack/stack_ops",
-            "miden/design/stack/io_ops",
-            "miden/design/stack/crypto_ops",
-          ],
-        },
-        "miden/design/range",
-        {
-          type: "category",
-          label: "Chiplets",
-          link: {
-            type: "doc",
-            id: "miden/design/chiplets/main",
-          },
-          items: [
-            "miden/design/chiplets/hasher",
-            "miden/design/chiplets/bitwise",
-            "miden/design/chiplets/memory",
-          ],
-        },
-        "miden/design/multiset",
-      ],
-    },
-    "miden/background",
   ],
 
   zkEVM: [

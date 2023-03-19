@@ -1,7 +1,7 @@
 ---
 id: usage
-title: Usage
-sidebar_label: Usage
+title: How to use Miden VM
+sidebar_label: How to use Miden VM
 description: "Basic instructions on how to use Miden VM."
 keywords:
   - docs

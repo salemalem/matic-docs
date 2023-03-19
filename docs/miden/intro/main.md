@@ -1,6 +1,7 @@
 ---
 id: main
-title: Introduction
+title: Miden VM Introduction
+sidebar_label: Introduction
 description: "Status and features of Miden virtual machine."
 keywords:
   - docs

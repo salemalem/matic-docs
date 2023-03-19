@@ -1,7 +1,7 @@
 ---
 id: main
 title:  Operand stack
-sidebar_label:  Operand stack
+sidebar_label:  Overview
 description: "Stack rules and restrictions."
 keywords:
   - docs

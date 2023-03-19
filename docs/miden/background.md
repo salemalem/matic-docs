@@ -1,7 +1,7 @@
 ---
 id: background
-title:  Background Material
-sidebar_label:  Background Material
+title:  STARKs and zk-STARKs
+sidebar_label:  STARKs
 description: Useful resources for exploring Polygon ID
 keywords:
   - docs
@@ -38,4 +38,3 @@ StarkWare's STARK Math blog series:
 
 StarkWare's STARK tutorial:
  * [STARK 101](https://starkware.co/stark-101/)
- 

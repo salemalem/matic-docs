@@ -1,7 +1,7 @@
 ---
 id: main
 title: Miden Assembly
-sidebar_label: Miden Assembly
+sidebar_label: Overview
 description: "The Miden language's advantages, notations and design."
 keywords:
   - docs
