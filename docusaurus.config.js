@@ -321,7 +321,7 @@ module.exports = {
               },
               {
                 label: "Miden",
-                href: "docs/miden/design/main"
+                href: "docs/category/reference"
               },
           ]
         },
@@ -571,70 +571,6 @@ module.exports = {
                   },
                 ],
         },
-
-        /* we should link out to the technical specifications for each protocol as reference material
-        {
-          label: "Specs",
-          position: "left",
-          items: [
-                  {
-                    href: '/docs/pos/polygon-architecture',
-                    label: 'PoS',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    href: '/docs/zkEVM/introduction/',
-                    label: 'zkEVM',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    href: '/docs/supernets/overview',
-                    label: 'Supernets',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    href: '/docs/miden/intro/main',
-                    label: 'Miden',
-                    target: '_self',
-                    rel: null,
-                  },
-                  {
-                    href: '/docs/polygonid/overview',
-                    label: 'Polygon ID',
-                    target: '_self',
-                    rel: null,
-                  },
-                ],
-        }, */
-        /*
-        {
-          label: "Contribute",
-          position: "left",
-          items: [
-            {
-              href: '/docs/category/become-a-contributor',
-              label: 'Guidelines',
-              target: '_self',
-              rel: null,
-            },
-            {
-              href: '/docs/category/style-guide',
-              label: 'Style Guide',
-              target: '_self',
-              rel: null,
-            },
-            {
-              href: 'https://immunefi.com/bounty/polygon/',
-              label: 'Bug Bounty',
-              target: '_blank',
-              rel: null,
-            }
-          ]
-        },
-        */
         {
           label: "IPs",
           position: "right",
