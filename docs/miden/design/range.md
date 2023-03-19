@@ -1,7 +1,7 @@
 ---
 id: range
 title:  Range Checker
-sidebar_label:  Range Checker
+sidebar_label:  Range checker
 description: "How 16-bit range checks are performed."
 keywords:
   - docs
