@@ -915,7 +915,6 @@ module.exports = {
                 "miden/design/stack/crypto_ops",
               ],
             },
-            "miden/design/range",
             {
               type: "category",
               label: "Chiplets",
@@ -929,6 +928,7 @@ module.exports = {
                 "miden/design/chiplets/memory",
               ],
             },
+            "miden/design/range",
             "miden/design/multiset",
           ],
         },
