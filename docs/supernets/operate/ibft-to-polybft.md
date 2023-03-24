@@ -51,7 +51,7 @@ curl -s -X POST --data '{"jsonrpc":"2.0", "method":"eth_getBalance", "params":["
 ### 1. Get trie root
 
 ```bash
-././polygon-edge regenesis getroot --rpc "http://localhost:10002"
+./polygon-edge regenesis getroot --rpc "http://localhost:10002"
 
 [Trie copy SUCCESS]
 state root 0xf5ef1a28c82226effb90f4465180ec3469226747818579673f4be929f1cd8663 for block 38
@@ -62,7 +62,7 @@ state root 0xf5ef1a28c82226effb90f4465180ec3469226747818579673f4be929f1cd8663 fo
 
 ```bash
 
-././polygon-edge regenesis --target-path ./trie_new --stateRoot 0xf5ef1a28c82226effb90f4465180ec3469226747818579673f4be929f1cd8663  --source-path ./test-chain-1/trie
+./polygon-edge regenesis --target-path ./trie_new --stateRoot 0xf5ef1a28c82226effb90f4465180ec3469226747818579673f4be929f1cd8663  --source-path ./test-chain-1/trie
 
 [Trie copy SUCCESS]
 
@@ -77,7 +77,7 @@ rm -rf test-chain-*
 ### 4. Create new validators
 
 ```bash
-././polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
+./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
 
 [WARNING: INSECURE LOCAL SECRETS - SHOULD NOT BE RUN IN PRODUCTION]
 
@@ -112,13 +112,13 @@ Node ID              = 16Uiu2HAmEuYYyzQKpyVr2HVCG8Gqx5e5DLCi8LWY4TkFYvHYcWAq
 ### 5. Generate the manifest file
 
 ```bash
-././polygon-edge manifest
+./polygon-edge manifest
 ```
 
 ### 6. Generate the genesis file
 
 ```bash
-././polygon-edge genesis --consensus polybft --validator-set-size=4 --bridge-json-rpc http://127.0.0.1:8545 \
+./polygon-edge genesis --consensus polybft --validator-set-size=4 --bridge-json-rpc http://127.0.0.1:8545 \
 --block-gas-limit 10000000 \
 --epoch-size 10 --trieroot 0xf5ef1a28c82226effb90f4465180ec3469226747818579673f4be929f1cd8663
 
@@ -131,10 +131,10 @@ Genesis written to ./genesis.json
 ### 7. Start new a v0.7.x chain
 
 ```bash
- ././polygon-edge server --data-dir ./test-chain-1 --chain genesis.json --grpc-address :10000 --libp2p :30301 --jsonrpc :10002 --seal --log-level DEBUG &
-././polygon-edge server --data-dir ./test-chain-2 --chain genesis.json --grpc-address :20000 --libp2p :30302 --jsonrpc :20002 --seal --log-level DEBUG &
-././polygon-edge server --data-dir ./test-chain-3 --chain genesis.json --grpc-address :30000 --libp2p :30303 --jsonrpc :30002 --seal --log-level DEBUG &
-././polygon-edge server --data-dir ./test-chain-4 --chain genesis.json --grpc-address :40000 --libp2p :30304 --jsonrpc :40002 --seal --log-level DEBUG &
+ ./polygon-edge server --data-dir ./test-chain-1 --chain genesis.json --grpc-address :10000 --libp2p :30301 --jsonrpc :10002 --seal --log-level DEBUG &
+./polygon-edge server --data-dir ./test-chain-2 --chain genesis.json --grpc-address :20000 --libp2p :30302 --jsonrpc :20002 --seal --log-level DEBUG &
+./polygon-edge server --data-dir ./test-chain-3 --chain genesis.json --grpc-address :30000 --libp2p :30303 --jsonrpc :30002 --seal --log-level DEBUG &
+./polygon-edge server --data-dir ./test-chain-4 --chain genesis.json --grpc-address :40000 --libp2p :30304 --jsonrpc :40002 --seal --log-level DEBUG &
 ```
 
 <details>
@@ -150,17 +150,17 @@ Genesis written to ./genesis.json
 2023-03-15T11:02:25.233+0400 [INFO]  polygon.server: Data dir: path=./test-chain-3
 2023-03-15T11:02:25.251+0400 [DEBUG] polygon.server: DataDog profiler disabled, set DD_PROFILING_ENABLED env var to enable it.
 invalid initial state root
-[1]    exit 1     ././polygon-edge server --data-dir ./test-chain-1 --chain genesis.json  :10000
+[1]    exit 1     ./polygon-edge server --data-dir ./test-chain-1 --chain genesis.json  :10000
 2023-03-15T11:02:25.299+0400 [INFO]  polygon.server: Data dir: path=./test-chain-2
 2023-03-15T11:02:25.302+0400 [DEBUG] polygon.server: DataDog profiler disabled, set DD_PROFILING_ENABLED env var to enable it.
 2023-03-15T11:02:25.396+0400 [INFO]  polygon.server: Data dir: path=./test-chain-4
 2023-03-15T11:02:25.413+0400 [DEBUG] polygon.server: DataDog profiler disabled, set DD_PROFILING_ENABLED env var to enable it.
 invalid initial state root
-[3]  - exit 1     ././polygon-edge server --data-dir ./test-chain-3 --chain genesis.json  :30000
+[3]  - exit 1     ./polygon-edge server --data-dir ./test-chain-3 --chain genesis.json  :30000
 invalid initial state root
-[2]  - exit 1     ././polygon-edge server --data-dir ./test-chain-2 --chain genesis.json  :20000
+[2]  - exit 1     ./polygon-edge server --data-dir ./test-chain-2 --chain genesis.json  :20000
 invalid initial state root
-[4]  + exit 1     ././polygon-edge server --data-dir ./test-chain-4 --chain genesis.json  :40000
+[4]  + exit 1     ./polygon-edge server --data-dir ./test-chain-4 --chain genesis.json  :40000
 ```
 
 </details>
@@ -183,10 +183,10 @@ cp -fR ./trie_new/ ./test-chain-4/trie/
 ### 9. Re-run chain
 
 ```bash
-././polygon-edge server --data-dir ./test-chain-1 --chain genesis.json --grpc-address :10000 --libp2p :30301 --jsonrpc :10002 --seal --log-level DEBUG &
-././polygon-edge server --data-dir ./test-chain-2 --chain genesis.json --grpc-address :20000 --libp2p :30302 --jsonrpc :20002 --seal --log-level DEBUG &
-././polygon-edge server --data-dir ./test-chain-3 --chain genesis.json --grpc-address :30000 --libp2p :30303 --jsonrpc :30002 --seal --log-level DEBUG &
-././polygon-edge server --data-dir ./test-chain-4 --chain genesis.json --grpc-address :40000 --libp2p :30304 --jsonrpc :40002 --seal --log-level DEBUG &
+./polygon-edge server --data-dir ./test-chain-1 --chain genesis.json --grpc-address :10000 --libp2p :30301 --jsonrpc :10002 --seal --log-level DEBUG &
+./polygon-edge server --data-dir ./test-chain-2 --chain genesis.json --grpc-address :20000 --libp2p :30302 --jsonrpc :20002 --seal --log-level DEBUG &
+./polygon-edge server --data-dir ./test-chain-3 --chain genesis.json --grpc-address :30000 --libp2p :30303 --jsonrpc :30002 --seal --log-level DEBUG &
+./polygon-edge server --data-dir ./test-chain-4 --chain genesis.json --grpc-address :40000 --libp2p :30304 --jsonrpc :40002 --seal --log-level DEBUG &
 ```
 
 <details>
