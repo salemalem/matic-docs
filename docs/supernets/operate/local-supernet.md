@@ -34,16 +34,16 @@ This document a full deployment of a testnet childchain in bridge mode, either u
 1. Generate private keys:
 
    ```bash
-   polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
+   ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
    ```
 
-    > Retrieve secrets output: `polygon-edge secrets output --data-dir test-chain-X`.
+    > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.
 
 2. Generate manifest file:
 
     **Option 1:**
     ```bash
-    polygon-edge manifest \
+    ./polygon-edge manifest \
     --validators-path ./ \
     --validators-prefix test-chain- \
     --path ./manifest.json \
@@ -52,7 +52,7 @@ This document a full deployment of a testnet childchain in bridge mode, either u
 
     **Option 2:**
     ```bash
-    polygon-edge manifest \
+    ./polygon-edge manifest \
     --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
     --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
     --path ./manifest.json \
@@ -64,13 +64,13 @@ This document a full deployment of a testnet childchain in bridge mode, either u
    Start rootchain server:
 
     ```bash
-    polygon-edge rootchain server
+    ./polygon-edge rootchain server
     ```
 
    Deploy rootchain contracts on the rootchain instance:
 
    ```bash
-    polygon-edge rootchain init-contracts
+    ./polygon-edge rootchain init-contracts
     --data-dir <local_storage_secrets_path> | [--config <cloud_secrets_manager_config_path>]
     [--manifest ./manifest.json]
     [--json-rpc http://127.0.0.1:8545]
@@ -80,20 +80,20 @@ This document a full deployment of a testnet childchain in bridge mode, either u
 4. Create a genesis file:
 
    ```bash
-    polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10
+    ./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10
     [--consensus polybft] [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
     ```
 
 5.  Fund validators on rootchain:
 
    ```bash
-   polygon-edge rootchain fund --data-dir test-chain- --num 4
+   ./polygon-edge rootchain fund --data-dir test-chain- --num 4
    ```
 
 6.  Run cluster
 
    ```bash
-   polygon-edge server --data-dir ./test-chain-1 \
+   ./polygon-edge server --data-dir ./test-chain-1 \
    --chain genesis.json \
    --grpc-address :5001 \
    --libp2p :30301 \
@@ -101,7 +101,7 @@ This document a full deployment of a testnet childchain in bridge mode, either u
    --seal \
    --log-level DEBUG
 
-   polygon-edge server --data-dir ./test-chain-2 \
+   ./polygon-edge server --data-dir ./test-chain-2 \
    --chain genesis.json \
    --grpc-address :5002 \
    --libp2p :30302 \
@@ -109,7 +109,7 @@ This document a full deployment of a testnet childchain in bridge mode, either u
    --seal \
    --log-level DEBUG
 
-   polygon-edge server --data-dir ./test-chain-3 \
+   ./polygon-edge server --data-dir ./test-chain-3 \
    --chain genesis.json \
    --grpc-address :5003 \
    --libp2p :30303 \
@@ -117,7 +117,7 @@ This document a full deployment of a testnet childchain in bridge mode, either u
    --seal \
    --log-level DEBUG
 
-   polygon-edge server --data-dir ./test-chain-4 \
+   ./polygon-edge server --data-dir ./test-chain-4 \
    --chain genesis.json \
    --grpc-address :5004 \
    --libp2p :30304 \
@@ -154,7 +154,7 @@ By the end of this tutorial, you will be able to:
 
 ## Prerequisites
 
-Before starting this tutorial, you should understand the basics of blockchain technology and be familiar with command-line interfaces. It would help if you also had the polygon-edge binary installed on your machine. Check out the [installation guide](/docs/supernets/operate/supernets-install) for more information if you haven't already.
+Before starting this tutorial, you should understand the basics of blockchain technology and be familiar with command-line interfaces. It would help if you also had the ./polygon-edge binary installed on your machine. Check out the [installation guide](/docs/supernets/operate/supernets-install) for more information if you haven't already.
 
 Ensure you have the following system prerequisites:
 
@@ -192,7 +192,7 @@ Supernets already come pre-compiled with the core contracts submodule. Optionall
    make compile-core-contracts
    ```
 
-   > Retrieve secrets output: `polygon-edge secrets output --data-dir test-chain-X`.
+   > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`.
 
 :::
 
@@ -200,7 +200,7 @@ Supernets already come pre-compiled with the core contracts submodule. Optionall
 
 > If you need to become more familiar with PolyBFT or consensus protocols in general, you can check out the System Design documents (link to the relevant section) for more information.
 
-To initialize PolyBFT consensus, we need to generate the necessary secrets for each node. This is done using the polygon-edge `polybft-secrets` command with the following options:
+To initialize PolyBFT consensus, we need to generate the necessary secrets for each node. This is done using the ./polygon-edge `polybft-secrets` command with the following options:
 
 - `--data-dir`: specifies the data directory for the blockchain network
 - `--num`: specifies the number of validator nodes to create
@@ -214,7 +214,7 @@ Additionally, we'll use the `--insecure` flag for testing as it skips the confir
 :::
 
 ```bash
-polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
+./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
 ```
 
 You should see an output for each validator similar to:
@@ -243,7 +243,7 @@ In order to create a fully functional PolyBFT cluster, it is recommended to have
 The secrets output can be retrieved again if needed by running the following command:
 
 ```bash
-polygon-edge secrets output --data-dir test-chain-X
+./polygon-edge secrets output --data-dir test-chain-X
 ```
 
 > In a production environment, keeping the validator secrets secure and retrieving them when necessary is recommended. The secrets should not be shared or made public as they can be used to compromise the security of the blockchain network.
@@ -285,7 +285,7 @@ Similarly, we construct the multiaddr for the second bootnode as shown below:
 The rootchain server is a Geth instance running in dev mode, which simulates the Ethereum network. This is needed to deploy and initialize the rootchain smart contracts.
 
 ```bash
-polygon-edge rootchain server
+./polygon-edge rootchain server
 ```
 
 You should see output similar to the following, indicating that the rootchain server is now running:
@@ -307,7 +307,7 @@ This will start the rootchain server on the default JSON-RPC port of 8545. Once 
 
 #### Initialize rootchain contracts
 
-Now that we have started the rootchain, we can deploy and initialize the rootchain smart contracts. This is done using the polygon-edge `rootchain init-contracts` command with the following options:
+Now that we have started the rootchain, we can deploy and initialize the rootchain smart contracts. This is done using the ./polygon-edge `rootchain init-contracts` command with the following options:
 
 - `--manifest`: specifies the path to the manifest file generated in the previous step
 - `--json-rpc`: specifies the endpoint for the JSON-RPC API of the Ethereum client that is used to deploy the contracts
@@ -316,7 +316,7 @@ Now that we have started the rootchain, we can deploy and initialize the rootcha
 This command starts `ethereum/client-go` container which is Geth node, and deploys the rootchain bridge and the checkpoint manager contracts.
 
 ```bash
-polygon-edge rootchain init-contracts --manifest ./manifest.json --path ./core-contracts/artifacts --json-rpc http://127.0.0.1:8545 --admin-key <hex_encoded_private_key>
+./polygon-edge rootchain init-contracts --manifest ./manifest.json --path ./core-contracts/artifacts --json-rpc http://127.0.0.1:8545 --admin-key <hex_encoded_private_key>
 ```
 
 > Note that the `--admin-key` option is optional, and if you omit it, the default account in your local Ethereum client will be used.
@@ -377,7 +377,7 @@ There are two ways to provide validators information:
 Option 1: All the validators' information is present in the local storage of a single host, and therefore the directory is provided using the --validators-path flag and validators' folder prefix names using the --validators-prefix flag.
 
 ```bash
-polygon-edge manifest \
+./polygon-edge manifest \
     --validators-path ./ \
     --validators-prefix test-chain- \
     --path ./manifest.json \
@@ -389,7 +389,7 @@ In this example, we assume that the secrets have been generated in the ./test-ch
 Option 2: Validator information is scaffolded on multiple hosts, and therefore we supply necessary information using the --validators flag. Validator information needs to be supplied in the strictly following format: "[p2p node id]:[public ECDSA address]:[public BLS key]".
 
 ```bash
-polygon-edge manifest \
+./polygon-edge manifest \
     --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
     --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
     --path ./manifest.json \
@@ -444,7 +444,7 @@ In this example, we provide validator information using the --validators flag. W
 
 Now that the rootchain contracts have been deployed and initialized, we can create the chain configuration for the PolyBFT network. The chain configuration specifies the parameters for the blockchain network, including the consensus mechanism, the block gas limit, and the epoch size.
 
-We'll use the polygon-edge genesis command to generate the genesis configuration file. Here are the options we'll be using:
+We'll use the ./polygon-edge genesis command to generate the genesis configuration file. Here are the options we'll be using:
 
 - `--consensus`: specifies the consensus mechanism to use for the network
 - `--block-gas-limit`: specifies the maximum gas limit for each block
@@ -455,7 +455,7 @@ We'll use the polygon-edge genesis command to generate the genesis configuration
 Here's an example command for generating the genesis file:
 
 ```bash
-    polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10
+    ./polygon-edge genesis --block-gas-limit 10000000 --epoch-size 10
     [--consensus polybft] [--bridge-json-rpc <rootchain_ip_address>] [--manifest ./manifest.json]
 ```
 
@@ -472,7 +472,7 @@ Genesis written to ./genesis.json
 
 ```json
 {
-    "name": "polygon-edge",
+    "name": "./polygon-edge",
     "genesis": {
         "nonce": "0x0000000000000000",
         "timestamp": "0x0",
@@ -603,14 +603,14 @@ With the genesis configuration file generated, we can proceed to the final step:
 
 Before starting the validator nodes on the childchain, we need to fund them on the rootchain network. This is necessary for validators to be able to send transactions to Ethereum, as they need to have enough funds to cover the gas fees.
 
-To fund the validators, we can use the polygon-edge rootchain fund command with the following options:
+To fund the validators, we can use the ./polygon-edge rootchain fund command with the following options:
 
 - -`-data-dir`: specifies the data directory for the blockchain network
 - `--num`: specifies the number of validator nodes to fund
 In this example, we are funding 4 validator nodes with the --num 4 option:
 
 ```bash
-polygon-edge rootchain fund --data-dir test-chain- --num 4
+./polygon-edge rootchain fund --data-dir test-chain- --num 4
 ```
 
 <details>
@@ -640,7 +640,7 @@ Transaction (hash)  = 0xd51e7f8b69071f88b5f7870c31c6942ed78c5c48f88594ed135f096b
 
 Now that we have set up the rootchain and created the chain configuration, we can run the childchain cluster. In this example, we'll run a childchain cluster of four Edge clients.
 
-To run a childchain cluster, we'll use the polygon-edge server command with the following options:
+To run a childchain cluster, we'll use the ./polygon-edge server command with the following options:
 
 - `--data-dir`: specifies the data directory for the blockchain network
 - `--chain`: specifies the chain configuration file for the blockchain network
@@ -651,13 +651,13 @@ To run a childchain cluster, we'll use the polygon-edge server command with the 
 - `--log-level`: specifies the log level for the node (optional)
 
 ```bash
-polygon-edge server --data-dir ./test-chain-1 --chain genesis.json --grpc-address :5001 --libp2p :30301 --jsonrpc :9545 --seal --log-level DEBUG
+./polygon-edge server --data-dir ./test-chain-1 --chain genesis.json --grpc-address :5001 --libp2p :30301 --jsonrpc :9545 --seal --log-level DEBUG
 
-polygon-edge server --data-dir ./test-chain-2 --chain genesis.json --grpc-address :5002 --libp2p :30302 --jsonrpc :10002 --seal --log-level DEBUG
+./polygon-edge server --data-dir ./test-chain-2 --chain genesis.json --grpc-address :5002 --libp2p :30302 --jsonrpc :10002 --seal --log-level DEBUG
 
-polygon-edge server --data-dir ./test-chain-3 --chain genesis.json --grpc-address :5003 --libp2p :30303 --jsonrpc :10003 --seal --log-level DEBUG
+./polygon-edge server --data-dir ./test-chain-3 --chain genesis.json --grpc-address :5003 --libp2p :30303 --jsonrpc :10003 --seal --log-level DEBUG
 
-polygon-edge server --data-dir ./test-chain-4 --chain genesis.json --grpc-address :5004 --libp2p :30304 --jsonrpc :10004 --seal --log-level DEBUG
+./polygon-edge server --data-dir ./test-chain-4 --chain genesis.json --grpc-address :5004 --libp2p :30304 --jsonrpc :10004 --seal --log-level DEBUG
 ```
 
 <details>
