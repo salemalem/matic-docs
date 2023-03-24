@@ -27,79 +27,79 @@ This document outlines how to deploy a local blockchain with PolyBFT consensus. 
 
 1. Initialize PolyBFT consensus:
 
-```bash
-./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
-```
+   ```bash
+      ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
+   ```
 
 > Retrieve secrets output: `./polygon-edge secrets output --data-dir test-chain-X`
 
-2. Generate manifest file:
+1. Generate manifest file:
 
     **Option 1:**
 
     ```bash
-    ./polygon-edge manifest \
-    --validators-path ./ \
-    --validators-prefix test-chain- \
-    --path ./manifest.json \
-    --premine-validators 100
+       ./polygon-edge manifest \
+       --validators-path ./ \
+       --validators-prefix test-chain- \
+       --path ./manifest.json \
+       --premine-validators 100
     ```
 
     **Option 2:**
 
     ```bash
-    ./polygon-edge manifest \
-    --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
-    --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
-    --path ./manifest.json \
-    --premine-validators 100
+       ./polygon-edge manifest \
+       --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
+       --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
+       --path ./manifest.json \
+       --premine-validators 100
     ```
 
-3. Create a genesis file:
+2. Create a genesis file:
 
    ```bash
-   ./polygon-edge genesis --consensus polybft --validator-set-size=4 \
-   --block-gas-limit 10000000 \
-   --premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000 \
-   --epoch-size 10 \
-   --bootnode /ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW \
-   --bootnode /ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq \
+      ./polygon-edge genesis --consensus polybft --validator-set-size=4 \
+      --block-gas-limit 10000000 \
+      --premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000 \
+      --epoch-size 10 \
+      --bootnode /ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW \
+      --bootnode /ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq \
    ```
 
-4. Start the clients:
+3. Start the clients:
 
    ```bash
-   # Node 1
-   ./polygon-edge server --data-dir ./test-chain-1 \
-   --chain ./new-genesis/genesis.json \
-   --grpc-address :10000 \
-   --libp2p :30301 \
-   --jsonrpc :10002 \
-   --seal
+      # Node 1
+      ./polygon-edge server --data-dir ./test-chain-1 \
+      --chain ./new-genesis/genesis.json \
+      --grpc-address :10000 \
+      --libp2p :30301 \
+      --jsonrpc :10002 \
+      --seal
 
-   # Node 2
-   ./polygon-edge server --data-dir ./test-chain-2 \
-   --chain ./new-genesis/genesis.json \
-   --grpc-address :20000 \
-   --libp2p :30302 \
-   --jsonrpc :20002 \
-   --seal
+      # Node 2
+      ./polygon-edge server --data-dir ./test-chain-2 \
+      --chain ./new-genesis/genesis.json \
+      --grpc-address :20000 \
+      --libp2p :30302 \
+      --jsonrpc :20002 \
+      --seal
 
-   # Node 3
-   ./polygon-edge server --data-dir ./test-chain-3 \
-   --chain ./new-genesis/genesis.json \
-   --grpc-address :30000 \
-   --libp2p :30303 \
-   --jsonrpc :30002 \
-   --seal
+      # Node 3
+      ./polygon-edge server --data-dir ./test-chain-3 \
+      --chain ./new-genesis/genesis.json \
+      --grpc-address :30000 \
+      --libp2p :30303 \
+      --jsonrpc :30002 \
+      --seal
 
-   # Node 4
-   ./polygon-edge server --data-dir ./test-chain-4 \
-   --chain ./new-genesis/genesis.json \
-   --grpc-address :40000 \
-   --libp2p :30304 \
-   --jsonrpc :40002 \
-   --seal
+      # Node 4
+      ./polygon-edge server --data-dir ./test-chain-4 \
+      --chain ./new-genesis/genesis.json \
+      --grpc-address :40000 \
+      --libp2p :30304 \
+      --jsonrpc :40002 \
+      --seal
    ```
 
 </details>
@@ -171,9 +171,9 @@ Additionally, we'll use the `--insecure` flag for testing as it skips the confir
 
 :::
 
-```bash
-./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
-```
+  ```bash
+    ./polygon-edge polybft-secrets --insecure --data-dir test-chain- --num 4
+  ```
 
 You should see an output for each validator similar to:
 
@@ -202,9 +202,9 @@ To create a fully functional PolyBFT cluster, it is recommended to have **at lea
 
 The secrets output can be retrieved again if needed by running the following command:
 
-```bash
-./polygon-edge secrets output --data-dir test-chain-X
-```
+  ```bash
+    ./polygon-edge secrets output --data-dir test-chain-X
+  ```
 
 > In a production environment, it is recommended to keep the validator secrets secure and only to retrieve them when necessary. The secrets should not be shared or made public as they can be used to compromise the security of the blockchain network.
 
@@ -216,9 +216,9 @@ This tutorial will designate the first and second nodes as bootnodes for all oth
 
 To specify the bootnode, we need to conform to the multiaddr format, which is as follows:
 
-```bash
-/ip4/<ip_address>/tcp/<port>/p2p/<node_id>
-```
+  ```bash
+    /ip4/<ip_address>/tcp/<port>/p2p/<node_id>
+  ```
 
 Since we are running on localhost, it is safe to assume that the ip_address is 127.0.0.1.
 
@@ -228,15 +228,15 @@ We will use the Node ID of the first node for the first bootnode and the Node ID
 
 After the assembly, the multiaddr connection string to node 1, which we will use as the bootnode will look something like this:
 
-```bash
-/ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW
-```
+  ```bash
+    /ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW
+  ```
 
 Similarly, we construct the multiaddr for the second bootnode as shown below:
 
-```bash
-/ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq
-```
+  ```bash
+    /ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq
+  ```
 
 ### 2. Generate manifest file
 
@@ -247,11 +247,11 @@ There are two ways to provide validators information:
 Option 1: All the validators' information is present in the local storage of a single host, and therefore the directory is provided using the --validators-path flag and validators' folder prefix names using the --validators-prefix flag.
 
   ```bash
-  ./polygon-edge manifest \
-      --validators-path ./ \
-      --validators-prefix test-chain- \
-      --path ./manifest.json \
-      --premine-validators 100
+    ./polygon-edge manifest \
+        --validators-path ./ \
+        --validators-prefix test-chain- \
+        --path ./manifest.json \
+        --premine-validators 100
   ```
 
 In this example, we assume that the secrets have been generated in the ./test-chain- directories and the validator information can be found in files with the prefix test-chain-. The `--premine-validators` option is used to specify the number of validators to pre-fund on the chain. In this case, we are pre-funding 100 validators.
@@ -259,11 +259,11 @@ In this example, we assume that the secrets have been generated in the ./test-ch
 Option 2: Validator information is scaffolded on multiple hosts, and therefore we supply necessary information using the --validators flag. Validator information needs to be supplied in the strictly following format: "[p2p node id]:[public ECDSA address]:[public BLS key]".
 
   ```bash
-  ./polygon-edge manifest \
-      --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
-      --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
-      --path ./manifest.json \
-      --premine-validators 100
+    ./polygon-edge manifest \
+        --validators 16Uiu2HAmTkqGixWVxshMbbgtXhTUP8zLCZZiG1UyCNtxLhCkZJuv:DcBe0024206ec42b0Ef4214Ac7B71aeae1A11af0:1cf134e02c6b2afb2ceda50bf2c9a01da367ac48f7783ee6c55444e1cab418ec0f52837b90a4d8cf944814073fc6f2bd96f35366a3846a8393e3cb0b19197cde23e2b40c6401fa27ff7d0c36779d9d097d1393cab6fc1d332f92fb3df850b78703b2989d567d1344e219f0667a1863f52f7663092276770cf513f9704b5351c4 \
+        --validators 16Uiu2HAm1kVEh4uVw41WuhDfreCaVuj3kiWZy44kbnJrZnwnMKDW:2da750eD4AE1D5A7F7c996Faec592F3d44060e90:088d92c25b5f278750534e8a902da604a1aa39b524b4511f5f47c3a386374ca3031b667beb424faef068a01cee3428a1bc8c1c8bab826f30a1ee03fbe90cb5f01abcf4abd7af3bbe83eaed6f82179b9cbdc417aad65d919b802d91c2e1aaefec27ba747158bc18a0556e39bfc9175c099dd77517a85731894bbea3d191a622bc \
+        --path ./manifest.json \
+        --premine-validators 100
   ```
 
 In this example, we provide validator information using the --validators flag. We are supplying information for two validators, and each validator is specified using the following format: [p2p node id]:[public ECDSA address]:[public BLS key].
@@ -315,13 +315,12 @@ In this example, we provide validator information using the --validators flag. W
 Once the secrets have been generated, we can create a genesis file with the specified parameters using the command:
 
   ```bash
-  ./polygon-edge genesis --consensus polybft --validator-set-size=4 \
-  --block-gas-limit 10000000 \
-  --premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000 \
-  --epoch-size 10 \
-  --bootnode /ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW \
-  --bootnode /ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq \
-  > genesis.json
+    ./polygon-edge genesis --consensus polybft --validator-set-size=4 \
+    --block-gas-limit 10000000 \
+    --premine 0x85da99c8a7c2c95964c8efd687e95e632fc533d6:1000000000000000000000 \
+    --epoch-size 10 \
+    --bootnode /ip4/127.0.0.1/tcp/30301/p2p/16Uiu2HAmJxxH1tScDX2rLGSU9exnuvZKNM9SoK3v315azp68DLPW \
+    --bootnode /ip4/127.0.0.1/tcp/30302/p2p/16Uiu2HAmS9Nq4QAaEiogE4ieJFUYsoH28magT7wSvJPpfUGBj3Hq \
   ```
 
 This command generates a genesis file with the following parameters:
@@ -340,37 +339,37 @@ After executing this command, a **genesis.json** file will be created in the cur
 After creating the genesis file, you need to start the servers for each node to begin running the network.
 
   ```bash
-   # Node 1
-   ./polygon-edge server --data-dir ./test-chain-1 \
-   --chain ./new-genesis/genesis.json \
-   --grpc-address :10000 \
-   --libp2p :30301 \
-   --jsonrpc :10002 \
-   --seal
+     # Node 1
+     ./polygon-edge server --data-dir ./test-chain-1 \
+     --chain ./new-genesis/genesis.json \
+     --grpc-address :10000 \
+     --libp2p :30301 \
+     --jsonrpc :10002 \
+     --seal
 
-   # Node 2
-   ./polygon-edge server --data-dir ./test-chain-2 \
-   --chain ./new-genesis/genesis.json \
-   --grpc-address :20000 \
-   --libp2p :30302 \
-   --jsonrpc :20002 \
-   --seal
+     # Node 2
+     ./polygon-edge server --data-dir ./test-chain-2 \
+     --chain ./new-genesis/genesis.json \
+     --grpc-address :20000 \
+     --libp2p :30302 \
+     --jsonrpc :20002 \
+     --seal
 
-   # Node 3
-   ./polygon-edge server --data-dir ./test-chain-3 \
-   --chain ./new-genesis/genesis.json \
-   --grpc-address :30000 \
-   --libp2p :30303 \
-   --jsonrpc :30002 \
-   --seal
+     # Node 3
+     ./polygon-edge server --data-dir ./test-chain-3 \
+     --chain ./new-genesis/genesis.json \
+     --grpc-address :30000 \
+     --libp2p :30303 \
+     --jsonrpc :30002 \
+     --seal
 
-   # Node 4
-   ./polygon-edge server --data-dir ./test-chain-4 \
-   --chain ./new-genesis/genesis.json \
-   --grpc-address :40000 \
-   --libp2p :30304 \
-   --jsonrpc :40002 \
-   --seal
+     # Node 4
+     ./polygon-edge server --data-dir ./test-chain-4 \
+     --chain ./new-genesis/genesis.json \
+     --grpc-address :40000 \
+     --libp2p :30304 \
+     --jsonrpc :40002 \
+     --seal
    ```
 
 - `./polygon-edge server`: starts the server process.
